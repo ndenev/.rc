@@ -16,6 +16,12 @@ set softtabstop=4 shiftwidth=4 expandtab
 set mouse=a
 set bg=dark
 set nocompatible
+set viminfo^=h
+set ff=unix
+
+syntax enable
+
+filetype off
 
 " Load vim-plug
 if empty(glob("~/.vim/autoload/plug.vim"))
@@ -26,9 +32,11 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-git', { 'for': 'git' }
-Plug 'Valloric/YouCompleteMe' 
+Plug 'Valloric/YouCompleteMe'
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'timonv/vim-cargo'
+Plug 'edkolev/promptline.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'tomasr/molokai'
@@ -51,10 +59,15 @@ Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
 filetype plugin indent on                   " required!
 call plug#end()
 
+set hidden
 set laststatus=2
 set number
 syntax on
 set t_Co=256
+set noshowmode
+
+set autoread
+au CursorHold * checktime
 
 colorscheme molokai
 let g:airline_powerline_fonts = 1
@@ -98,8 +111,14 @@ nmap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
 
+cnoremap <S-Left> <C-C>:tabprevious<CR>
+cnoremap <S-Right> <C-C>:tabnext<CR>
+inoremap <S-Left> <C-\><C-N>:tabprevious<CR>
+inoremap <S-Right> <C-\><C-N>:tabnext<CR>
+noremap <S-Left> :<C-U>tabprevious<CR>
+noremap <S-Right> :<C-U>tabnext<CR>
+
 " Racer
-set hidden
 let g:racer_cmd = "/usr/local/bin/racer"
 let $RUST_SRC_PATH="/Users/ndenev/Documents/rust-source/rust-stable/src"
 
