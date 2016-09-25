@@ -3,37 +3,47 @@ set mouse=a
 set bg=dark
 set nocompatible
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Load vim-plug
+if empty(glob("~/.vim/autoload/plug.vim"))
+    silent execute '!mkdir -p ~/.vim/plugged'
+    silent execute '!mkdir -p ~/.vim/autoload'
+    silent execute '!echo "Downloading Vim-Plug"; curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-Plugin 'VundleVim/Vundle.vim'
-"Plugin 'jeetsukumaran/vim-buffergator'
-"Plugin 'sickill/vim-monokai'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'racer-rust/vim-racer'
-Plugin 'rust-lang/rust.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tomasr/molokai'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'cespare/vim-toml'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+call plug#begin('~/.vim/plugged')
+"Plug 'jeetsukumaran/vim-buffergator'
+Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'Valloric/YouCompleteMe' 
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'tomasr/molokai'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-unimpaired'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'vimwiki/vimwiki'
+" Make % match xml tags
+Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
+filetype plugin indent on                   " required!
 
-call vundle#end()
+call plug#end()
 
 set laststatus=2
 set number
 syntax on
 set t_Co=256
 
-filetype plugin indent on
 colorscheme molokai
 let g:airline_powerline_fonts = 1
 let g:rehash256 = 1
@@ -64,7 +74,7 @@ let g:syntastic_check_on_wq = 0
 
 " NerdTree
 
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
 autocmd BufEnter * NERDTreeMirror
 
 "CTRL-t to toggle tree view with CTRL-t
