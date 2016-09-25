@@ -1,3 +1,17 @@
+" VIM8 config:
+" ./configure \
+"   --enable-multibyte \
+"   --enable-luainterp=yes \
+"   --enable-perlinterp=yes \
+"   --enable-pythoninterp=yes \
+"   --enable-python3interp=yes \
+"   --enable-rubyinterp=yes \
+"   --enable-cscope \
+"   --with-features=huge \
+"   --with-compiledby=ndenev \
+"   --with-luajit
+"
+
 set softtabstop=4 shiftwidth=4 expandtab
 set mouse=a
 set bg=dark
@@ -11,12 +25,11 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 endif
 
 call plug#begin('~/.vim/plugged')
-"Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'Valloric/YouCompleteMe' 
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-fugitive'
@@ -36,7 +49,6 @@ Plug 'vimwiki/vimwiki'
 " Make % match xml tags
 Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
 filetype plugin indent on                   " required!
-
 call plug#end()
 
 set laststatus=2
