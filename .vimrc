@@ -1,15 +1,5 @@
 " VIM8 config:
-" ./configure \
-"   --enable-multibyte \
-"   --enable-luainterp=yes \
-"   --enable-perlinterp=yes \
-"   --enable-pythoninterp=yes \
-"   --enable-python3interp=yes \
-"   --enable-rubyinterp=yes \
-"   --enable-cscope \
-"   --with-features=huge \
-"   --with-compiledby=ndenev \
-"   --with-luajit
+" ./configure --enable-multibyte --enable-luainterp=yes --enable-perlinterp=yes --enable-pythoninterp=yes --enable-rubyinterp=yes --enable-cscope --with-features=huge --with-compiledby=ndenev --with-luajit
 "
 
 set softtabstop=4 shiftwidth=4 expandtab
